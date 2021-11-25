@@ -1,0 +1,11 @@
+name: tf-batch-endpoint-score
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.7
+  - pillow=8.3.1
+  - pip
+  - pip:
+    - tensorflow==2.4
+    - azureml-defaults==1.32.0

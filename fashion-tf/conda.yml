@@ -1,0 +1,13 @@
+name: fashion-tf
+channels:
+  - pytorch
+  - conda-forge
+  - defaults
+dependencies:
+  - python==3.8.10
+  - matplotlib==3.3.4
+  - yapf==0.31.0
+  - pylint==2.10.2
+  - pip
+  - pip:
+      - tensorflow==2.5

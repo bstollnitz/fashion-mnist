@@ -1,0 +1,14 @@
+$schema: https://azuremlschemas.azureedge.net/latest/managedOnlineDeployment.schema.json
+name: blue
+endpoint_name: endpoint-managed-fashion-4
+app_insights_enabled: true
+model: azureml:model-tf-fashion:1
+code_configuration:
+  code:
+    local_path: ../../tf-src/
+  scoring_script: score.py
+environment:
+  conda_file: score-conda.yml
+  image: mcr.microsoft.com/azureml/openmpi4.1.0-cuda11.0.3-cudnn8-ubuntu18.04:latest
+instance_type: Standard_NC6s_v3
+instance_count: 1

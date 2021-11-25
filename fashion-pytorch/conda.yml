@@ -1,0 +1,12 @@
+name: fashion-pytorch
+channels:
+  - pytorch
+  - conda-forge
+  - defaults
+dependencies:
+  - python==3.8.10
+  - pytorch==1.8.1=py3.8_cuda10.2_cudnn7.6.5_0
+  - torchvision==0.9.1
+  - matplotlib==3.3.4
+  - yapf==0.31.0
+  - pylint==2.11.1

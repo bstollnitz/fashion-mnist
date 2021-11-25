@@ -1,0 +1,14 @@
+name: pytorch-batch-endpoint-score
+channels:
+  - pytorch
+  - conda-forge
+  - defaults
+dependencies:
+  - numpy=1.20
+  - python=3.7
+  - pytorch=1.7
+  - pillow=8.3.1
+  - torchvision=0.8.1
+  - pip
+  - pip:
+    - azureml-defaults==1.32.0

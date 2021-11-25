@@ -1,0 +1,11 @@
+name: pytorch-managed-endpoint-score
+channels:
+  - pytorch
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.7
+  - pytorch=1.7
+  - pip
+  - pip:
+    - azureml-defaults

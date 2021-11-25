@@ -1,0 +1,14 @@
+$schema: https://azuremlschemas.azureedge.net/latest/batchDeployment.schema.json
+name: blue
+endpoint_name: fashion-endpoint-batch-1
+model: azureml:model-pytorch-batch-fashion:1
+code_configuration:
+  code:
+    local_path: ../../pytorch-src/
+  scoring_script: score.py
+environment:
+  conda_file: score-conda.yml
+  image: mcr.microsoft.com/azureml/openmpi3.1.2-ubuntu18.04:latest
+compute: azureml:cluster-cpu
+mini_batch_size: 10
+output_file_name: predictions_pytorch.csv

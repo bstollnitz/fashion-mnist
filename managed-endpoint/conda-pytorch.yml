@@ -1,0 +1,11 @@
+name: pytorch-managed-endpoint-train
+channels:
+  - pytorch
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.8
+  - pytorch=1.8.1
+  - torchvision
+  - yapf==0.31.0
+  - pylint==2.11.1
