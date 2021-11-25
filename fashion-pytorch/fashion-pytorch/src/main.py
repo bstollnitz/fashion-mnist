@@ -201,7 +201,7 @@ def training_phase(device: str):
 
 
 def _predict(model: nn.Module, x: torch.Tensor, device: str) -> np.ndarray:
-    """Makes a prediction for input X."""
+    """Makes a prediction for input x."""
     model.to(device)
     model.eval()
 

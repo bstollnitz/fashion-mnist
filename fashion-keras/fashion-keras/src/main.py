@@ -30,7 +30,7 @@ WEIGHTS_PATH = 'fashion-keras/outputs/weights'
 IMAGE_PATH = 'fashion-keras/src/predict-image.png'
 
 
-def get_data(batch_size: int) -> Tuple[tf.data.Dataset, tf.data.Dataset]:
+def _get_data(batch_size: int) -> Tuple[tf.data.Dataset, tf.data.Dataset]:
     """Downloads Fashion MNIST data, and returns two Dataset objects
     wrapping test and training data."""
     (training_images, training_labels), (
@@ -52,7 +52,7 @@ def get_data(batch_size: int) -> Tuple[tf.data.Dataset, tf.data.Dataset]:
     return (train_dataset, test_dataset)
 
 
-def visualize_data(dataset: tf.data.Dataset) -> None:
+def _visualize_data(dataset: tf.data.Dataset) -> None:
     """Displays a few images from the Dataset object passed as a
     parameter."""
     first_batch = dataset.as_numpy_iterator().next()
@@ -76,7 +76,7 @@ def training_phase():
     batch_size = 64
     epochs = 5
 
-    (train_dataset, test_dataset) = get_data(batch_size)
+    (train_dataset, test_dataset) = _get_data(batch_size)
     # visualize_data(train_dataset)
 
     model = NeuralNetwork()
