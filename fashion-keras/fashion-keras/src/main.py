@@ -77,7 +77,7 @@ def training_phase():
     epochs = 5
 
     (train_dataset, test_dataset) = _get_data(batch_size)
-    # visualize_data(train_dataset)
+    # _visualize_data(train_dataset)
 
     model = NeuralNetwork()
     # model.build((1, 28, 28))

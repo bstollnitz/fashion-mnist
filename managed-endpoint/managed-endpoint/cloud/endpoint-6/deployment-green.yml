@@ -1,7 +1,6 @@
 $schema: https://azuremlschemas.azureedge.net/latest/managedOnlineDeployment.schema.json
 name: green
 endpoint_name: endpoint-managed-fashion-6
-app_insights_enabled: true
 model: azureml:model-tf-fashion:1
 code_configuration:
   code:
