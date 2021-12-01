@@ -1,3 +1,3 @@
 $schema: https://azuremlschemas.azureedge.net/latest/batchEndpoint.schema.json
-name: fashion-endpoint-batch-1
+name: endpoint-batch-fashion-1
 auth_mode: aad_token

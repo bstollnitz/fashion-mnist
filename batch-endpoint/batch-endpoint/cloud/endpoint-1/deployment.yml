@@ -1,6 +1,6 @@
 $schema: https://azuremlschemas.azureedge.net/latest/batchDeployment.schema.json
 name: blue
-endpoint_name: fashion-endpoint-batch-1
+endpoint_name: endpoint-batch-fashion-1
 model: azureml:model-pytorch-batch-fashion:1
 code_configuration:
   code:

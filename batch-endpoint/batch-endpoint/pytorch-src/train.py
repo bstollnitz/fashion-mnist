@@ -26,7 +26,7 @@ labels_map = {
 }
 
 DATA_PATH = 'batch-endpoint/data'
-WEIGHTS_PATH = 'batch-endpoint/pytorch-model/weights.pth'
+MODEL_PATH = 'batch-endpoint/pytorch-model/model.pth'
 
 
 def _get_data(batch_size: int) -> Tuple[DataLoader, DataLoader]:
@@ -175,7 +175,7 @@ def training_phase(device: str):
     print(f'Test loss: {test_loss:>8f}, ' +
           f'test accuracy: {test_accuracy * 100:>0.1f}%')
 
-    torch.save(model.state_dict(), WEIGHTS_PATH)
+    torch.save(model, MODEL_PATH)
 
 
 def main() -> None:

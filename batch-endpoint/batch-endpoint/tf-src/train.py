@@ -23,7 +23,7 @@ labels_map = {
     9: 'Ankle Boot',
 }
 
-WEIGHTS_PATH = 'batch-endpoint/tf-model/weights'
+MODEL_PATH = 'batch-endpoint/tf-model/'
 
 
 def _get_data(batch_size: int) -> Tuple[tf.data.Dataset, tf.data.Dataset]:
@@ -170,7 +170,7 @@ def training_phase():
     print(f'Test loss: {test_loss:>8f}, ' +
           f'test accuracy: {test_accuracy * 100:>0.1f}%')
 
-    model.save_weights(WEIGHTS_PATH)
+    model.save(MODEL_PATH)
 
 
 def main() -> None:
