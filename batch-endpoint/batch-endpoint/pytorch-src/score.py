@@ -64,7 +64,7 @@ def run(mini_batch):
         image = Image.open(image_path)
         tensor = transform(image).to(device)
         predicted_index = predict(model, tensor).item()
-        predicted_names.append(labels_map[predicted_index])
+        predicted_names.append(f'{image_path}: {labels_map[predicted_index]}')
 
     logger.info('Run completed')
     return predicted_names

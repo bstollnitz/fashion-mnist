@@ -3,23 +3,24 @@
 from torchvision import datasets
 import os
 
+DATA_PATH = 'batch-endpoint/data'
+SAMPLE_REQUEST = 'batch-endpoint/sample-request'
+
 
 def main() -> None:
     """Creates a sample request to be used in prediction."""
 
-    dir_name = 'batch-endpoint/sample-request'
-
     test_data = datasets.FashionMNIST(
-        root='data',
+        root=DATA_PATH,
         train=False,
         download=True,
     )
 
-    os.makedirs(name=dir_name, exist_ok=True)
+    os.makedirs(name=SAMPLE_REQUEST, exist_ok=True)
     for i, (image, _) in enumerate(test_data):
         if i == 200:
             break
-        image.save(f'{dir_name}/{i+1:0>3}.png')
+        image.save(f'{SAMPLE_REQUEST}/{i+1:0>3}.png')
 
 
 if __name__ == '__main__':

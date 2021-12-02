@@ -61,7 +61,7 @@ def run(mini_batch):
         array = tf.keras.preprocessing.image.img_to_array(image).reshape(
             (-1, 28, 28))
         predicted_index = predict(model, array).numpy().sum()
-        predicted_names.append(labels_map[predicted_index])
+        predicted_names.append(f'{image_path}: {labels_map[predicted_index]}')
 
     logger.info('Run completed')
     return predicted_names
