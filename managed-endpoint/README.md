@@ -2,9 +2,23 @@
 
 For a detailed explanation of the code, check out the accompanying blog post: [Creating managed online endpoints in Azure ML](https://bea.stollnitz.com/blog/managed-endpoint/).
 
-I include instructions to setup and run the code at the end of this page. However, I've included all the folders created when running the code in this project, so you can go straight to working with the endpoints!
+I've included in the project all the folders created when running the code (`pytorch-model`, `tf-model`, and `sample-request`). Therefore you don't need to build and run the code &mdash; you can go straight to working with the endpoints!
 
 You can find below the steps needed to create and invoke the endpoints in this project.
+
+
+## Azure setup
+
+* You need to have an Azure subscription. You can get a [free subscription](https://azure.microsoft.com/en-us/free?WT.mc_id=aiml-31508-bstollnitz) to try it out.
+* Create a [resource group](https://docs.microsoft.com/en-us/azure/azure-resource-manager/management/manage-resource-groups-portal?WT.mc_id=aiml-31508-bstollnitz).
+* Create a new machine learning workspace by following the "Create the workspace" section of the [documentation](https://docs.microsoft.com/en-us/azure/machine-learning/quickstart-create-resources?WT.mc_id=aiml-31508-bstollnitz). Keep in mind that you'll be creating a "machine learning workspace" Azure resource, not a "workspace" Azure resource, which is entirely different!
+* If you have access to GitHub Codespaces, click on the "Code" button in this GitHub repo, select the "Codespaces" tab, and then click on "New codespace". If you plan to use your local machine, install the ML extension to the Azure CLI by following the "Installation" section of the [documentation](https://docs.microsoft.com/en-us/azure/machine-learning/how-to-configure-cli?WT.mc_id=aiml-31508-bstollnitz).
+* On a terminal window, login to Azure by executing `az login`. 
+* Install the ML extension to the Azure CLI by following the "Installation" section of the [documentation](https://docs.microsoft.com/en-us/azure/machine-learning/how-to-configure-cli?WT.mc_id=aiml-31508-bstollnitz).
+* Set your default subscription by executing `az account set -s "<YOUR_SUBSCRIPTION_NAME_OR_ID>"`. You can verify your default subscription by executing `az account show`, or by looking at `~/.azure/azureProfile.json`.
+* Set your default resource group and workspace by executing `az configure --defaults group="<YOUR_RESOURCE_GROUP>" workspace="<YOUR_WORKSPACE>"`. You can verify your defaults by executing `az configure --list-defaults` or by looking at `~/.azure/config`.
+* You can now open the [Azure Machine Learning studio](https://ml.azure.com/?WT.mc_id=aiml-31508-bstollnitz), where you'll be able to see and manage all the machine learning resources we'll be creating.
+* Although not essential to run the code in this post, I highly recommend installing the [Azure Machine Learning extension for VS Code](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.vscode-ai).
 
 
 ## Create the models
@@ -76,30 +90,3 @@ az ml online-deployment create -f managed-endpoint/cloud/endpoint-6/deployment-g
 az ml online-endpoint update --name <ENDPOINT6> --traffic "blue=90 green=10"
 az ml online-endpoint invoke -n <ENDPOINT6> --request-file managed-endpoint/sample-request/sample_request.json
 ```
-
-
-## Setup
-
-Setting up and running the project re-creates the folders `pytorch-model`, `tf-model`, and `sample-request`. Since I already include these in the project, you can go straight to working with endpoints without running the code. I include setup and running instructions here, just in case you'd like to re-create these folders.
-
-If you have access to GitHub Codespaces, click on the "Code" button in this GitHub repo, select the "Codespaces" tab, and then click on "New codespace". Alternatively, you can set up your local machine using the following steps.
-
-Install conda environment:
-
-```
-conda env create -f conda.yml
-```
-
-Activate conda environment:
-
-```
-conda activate fashion-mnist
-```
-
-
-## Run
-
-Within VS Code, open the following files and press F5:
-* `managed-endpoint/pytorch-src/train.py` &mdash; This re-creates the folder `pytorch-model`.
-* `managed-endpoint/pytorch-src/create-sampple-request.py` &mdash; This re-creates the folder `sample-request`.
-* `managed-endpoint/tf-src/train.py` &mdash; This re-creates the folder `tf-model`.
