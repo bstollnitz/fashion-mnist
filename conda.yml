@@ -1,0 +1,17 @@
+name: fashion-mnist
+channels:
+  - pytorch
+  - conda-forge
+  - defaults
+dependencies:
+  - python==3.8.10
+  - pytorch==1.8.1
+  - torchvision==0.9.1
+  - pillow==8.3.1
+  - matplotlib==3.3.4
+  - yapf==0.31.0
+  - pylint==2.11.1
+  - pip
+  - pip:
+      - tensorflow==2.5
+
