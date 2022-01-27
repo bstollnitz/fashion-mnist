@@ -9,6 +9,8 @@ from PIL import Image
 from torch import Tensor, nn
 from torchvision import transforms
 
+from neural_network import NeuralNetwork
+
 labels_map = {
     0: 'T-Shirt',
     1: 'Trouser',
@@ -47,9 +49,13 @@ def init():
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
     logger.info('Device: %s', device)
 
-    model_path = os.path.join(os.getenv('AZUREML_MODEL_DIR'), 'model.pth')
+    if 'AZUREML_MODEL_DIR' in os.environ:
+        model_path = os.path.join(os.getenv('AZUREML_MODEL_DIR'), 'weights.pth')
+    else:
+        model_path = 'batch-endpoint/pytorch-model/weights.pth'
 
-    model = torch.load(model_path, map_location=device)
+    model = NeuralNetwork().to(device)
+    model.load_state_dict(torch.load(model_path, map_location=device))
     model.eval()
 
     logger.info('Init completed')

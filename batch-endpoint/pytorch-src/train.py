@@ -154,10 +154,8 @@ def training_phase(device: str):
     epochs = 5
 
     (train_dataloader, test_dataloader) = _get_data(batch_size)
-    # _visualize_data(train_dataloader)
 
     model = NeuralNetwork()
-    # print(model)
 
     loss_fn = nn.CrossEntropyLoss()
     optimizer = torch.optim.SGD(model.parameters(), lr=learning_rate)

@@ -13,7 +13,7 @@ You can find below the steps needed to create and invoke the endpoints in this p
 * Create a [resource group](https://docs.microsoft.com/en-us/azure/azure-resource-manager/management/manage-resource-groups-portal?WT.mc_id=aiml-31508-bstollnitz).
 * Create a new machine learning workspace by following the "Create the workspace" section of the [documentation](https://docs.microsoft.com/en-us/azure/machine-learning/quickstart-create-resources?WT.mc_id=aiml-31508-bstollnitz). Keep in mind that you'll be creating a "machine learning workspace" Azure resource, not a "workspace" Azure resource, which is entirely different!
 * If you have access to GitHub Codespaces, click on the "Code" button in this GitHub repo, select the "Codespaces" tab, and then click on "New codespace". If you plan to use your local machine, install the ML extension to the Azure CLI by following the "Installation" section of the [documentation](https://docs.microsoft.com/en-us/azure/machine-learning/how-to-configure-cli?WT.mc_id=aiml-31508-bstollnitz).
-* On a terminal window, login to Azure by executing `az login`. 
+* On a terminal window, login to Azure by executing `az login --use-device-code`. 
 * Install the ML extension to the Azure CLI by following the "Installation" section of the [documentation](https://docs.microsoft.com/en-us/azure/machine-learning/how-to-configure-cli?WT.mc_id=aiml-31508-bstollnitz).
 * Set your default subscription by executing `az account set -s "<YOUR_SUBSCRIPTION_NAME_OR_ID>"`. You can verify your default subscription by executing `az account show`, or by looking at `~/.azure/azureProfile.json`.
 * Set your default resource group and workspace by executing `az configure --defaults group="<YOUR_RESOURCE_GROUP>" workspace="<YOUR_WORKSPACE>"`. You can verify your defaults by executing `az configure --list-defaults` or by looking at `~/.azure/config`.
@@ -40,26 +40,26 @@ az ml compute create -f batch-endpoint/cloud/cluster-cpu.yml
 
 ## Create the endpoints
 
-Execute the following commands, replacing `<ENDPOINT1>` and `<ENDPOINT2>` with names you choose for your endpoints.
+Execute the following commands, replacing `endpoint-batch-fashion-1` and `endpoint-batch-fashion-2` with names you choose for your endpoints.
 
 ```
-az ml batch-endpoint create -f batch-endpoint/cloud/endpoint-1/endpoint.yml --name <ENDPOINT1>
-az ml batch-deployment create -f batch-endpoint/cloud/endpoint-1/deployment.yml --endpoint-name <ENDPOINT1> --set-default
-az ml batch-endpoint create -f batch-endpoint/cloud/endpoint-2/endpoint.yml --name <ENDPOINT2>
-az ml batch-deployment create -f batch-endpoint/cloud/endpoint-2/deployment.yml --endpoint-name <ENDPOINT2> --set-default
+az ml batch-endpoint create -f batch-endpoint/cloud/endpoint-1/endpoint.yml --name endpoint-batch-fashion-1
+az ml batch-deployment create -f batch-endpoint/cloud/endpoint-1/deployment.yml --endpoint-name endpoint-batch-fashion-1 --set-default
+az ml batch-endpoint create -f batch-endpoint/cloud/endpoint-2/endpoint.yml --name endpoint-batch-fashion-2
+az ml batch-deployment create -f batch-endpoint/cloud/endpoint-2/deployment.yml --endpoint-name endpoint-batch-fashion-2 --set-default
 ```
 
 
 ## Invoke the endpoints
 
-Execute the following commands, replacing `<ENDPOINT1>` and `<ENDPOINT2>` with the names you chose for your endpoints.
+Execute the following commands, replacing `endpoint-batch-fashion-1` and `endpoint-batch-fashion-2` with the names you chose for your endpoints.
 
 ```
-az ml batch-endpoint invoke --name <ENDPOINT1> --input-local-path batch-endpoint/sample-request
-az ml batch-endpoint invoke --name <ENDPOINT2> --input-local-path batch-endpoint/sample-request
+az ml batch-endpoint invoke --name endpoint-batch-fashion-1 --input-local-path batch-endpoint/sample-request
+az ml batch-endpoint invoke --name endpoint-batch-fashion-2 --input-local-path batch-endpoint/sample-request
 ```
 
 
 ## Get the prediction results
 
-Go to the [Azure ML portal](https://ml.azure.com), click on "Endpoints", "Batch endpoints", and click on the name of the endpoint. Then click on "Runs", and on the top "Display name", which is the latest run. Once the run has completed, click on "batchscoring", "Outputs + logs", and "Show data outputs". Clicking on the "Access data" icon will take you to the blob storage location where the prediction results are located.
+Go to the [Azure ML portal](https://ml.azure.com), click on "Endpoints", "Batch endpoints", and click on the name of the endpoint. Then click on "Runs", and on the latest run, which is displayed at the top. Once the run has completed, write click on the circle that says "score", and choose "Access data". This will take you to the blob storage location where the prediction results are located.

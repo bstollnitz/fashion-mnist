@@ -22,14 +22,6 @@ labels_map = {
 }
 
 
-@tf.function
-def predict(model: tf.keras.Model, x: np.ndarray) -> tf.Tensor:
-    y_prime = model(x, training=False)
-    probabilities = tf.nn.softmax(y_prime, axis=1)
-    predicted_indices = tf.math.argmax(input=probabilities, axis=1)
-    return predicted_indices
-
-
 def init():
     global logger
     global model
@@ -60,7 +52,7 @@ def run(mini_batch):
         image = Image.open(image_path)
         array = tf.keras.preprocessing.image.img_to_array(image).reshape(
             (-1, 28, 28))
-        predicted_index = predict(model, array).numpy().sum()
+        predicted_index = np.argmax(model.predict(array))
         predicted_names.append(f'{image_path}: {labels_map[predicted_index]}')
 
     logger.info('Run completed')
