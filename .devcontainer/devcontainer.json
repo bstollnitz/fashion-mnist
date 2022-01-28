@@ -17,5 +17,6 @@
 	"features": {
 		"azure-cli": "latest"
 	},
-	"remoteUser": "vscode"
+	"remoteUser": "vscode",
+	"onCreateCommand": "az extension add -n ml -y",
 }
