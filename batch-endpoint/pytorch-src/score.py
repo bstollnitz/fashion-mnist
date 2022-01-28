@@ -49,11 +49,7 @@ def init():
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
     logger.info('Device: %s', device)
 
-    if 'AZUREML_MODEL_DIR' in os.environ:
-        model_path = os.path.join(os.getenv('AZUREML_MODEL_DIR'), 'weights.pth')
-    else:
-        model_path = 'batch-endpoint/pytorch-model/weights.pth'
-
+    model_path = os.path.join(os.getenv('AZUREML_MODEL_DIR'), 'weights.pth')
     model = NeuralNetwork().to(device)
     model.load_state_dict(torch.load(model_path, map_location=device))
     model.eval()

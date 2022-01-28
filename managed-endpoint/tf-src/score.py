@@ -40,14 +40,8 @@ def init():
     physical_devices = tf.config.list_physical_devices('GPU')
     logging.info('Num GPUs: %d', len(physical_devices))
 
-    if 'AZUREML_MODEL_DIR' in os.environ:
-        model_path = os.path.join(os.getenv('AZUREML_MODEL_DIR'),
-                                  'tf-model/weights')
-    else:
-        model_path = 'managed-endpoint/tf-model/weights'
-
-    model = NeuralNetwork()
-    model.load_weights(model_path)
+    model_path = os.path.join(os.getenv('AZUREML_MODEL_DIR'), 'tf-model')
+    model = tf.keras.models.load_model(model_path, compile=False)
 
     logging.info('Init completed')
 
@@ -58,7 +52,7 @@ def run(raw_data):
     x = json.loads(raw_data)['data']
     x = np.array(x).reshape((-1, 28, 28))
 
-    predicted_index = predict(model, x).numpy()[0]
+    predicted_index = np.argmax(model.predict(x))
     predicted_name = labels_map[predicted_index]
 
     logging.info('Predicted name: %s', predicted_name)
