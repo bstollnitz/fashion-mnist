@@ -12,7 +12,8 @@
 	"extensions": [
 		"ms-python.python",
 		"ms-python.vscode-pylance",
-		"ms-toolsai.vscode-ai"
+		"ms-toolsai.jupyter",
+		"ms-toolsai.vscode-ai",
 	],
 	"features": {
 		"azure-cli": "latest"
