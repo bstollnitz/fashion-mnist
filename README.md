@@ -1,6 +1,6 @@
 This project shows how to classify images of Fashion-MNIST clothing items using a simple neural network. This is a good project for beginners to machine learning. 
 
-The code in this repro relates to the following blog posts:
+The code in this repo relates to the following blog posts:
 
 * [Introduction to PyTorch](https://bea.stollnitz.com/blog/fashion-pytorch/) &mdash; Under the directory "fashion-pytorch".
 * [Introduction to TensorFlor using Keras](https://bea.stollnitz.com/blog/fashion-keras/) &mdash; Under the directory "fashion-keras".
